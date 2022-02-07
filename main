@@ -1,0 +1,49 @@
+#TODO: Create a letter using starting_letter.txt 
+#for each name in invited_names.txt
+#Replace the [name] placeholder with the actual name.
+#Save the letters in the folder "ReadyToSend".
+    
+#Hint1: This method will help you: https://www.w3schools.com/python/ref_file_readlines.asp
+    #Hint2: This method will also help you: https://www.w3schools.com/python/ref_string_replace.asp
+        #Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
+
+
+# TODO: using starting_letter.txt as the template:
+# TODO: grab a name from the invited_names.txt, and insert it into the correct spot
+# TODO: using this (now ready) letter, write it to a new .txt file in the ReadyToSend file
+# TODO: go back and do it again, but this time with the next name
+
+# with open('C:/Users/Bryant/Downloads/Mail+Merge+Project+Start (1)/Mail Merge Project Start/Input/Names/invited_names.txt', mode ='r') as name_list:
+#     names = name_list.readlines()
+#     first_person = names[0]
+#
+# test = open('C:/Users/Bryant/Downloads/Mail+Merge+Project+Start (1)/Mail Merge Project Start/Output/ReadyToSend/test.txt', mode='w')
+#
+#
+# with open('C:/Users/Bryant/Downloads/Mail+Merge+Project+Start (1)/Mail Merge Project Start/Input/Letters/starting_letter.txt', mode ='r') as template:
+#     letter = template.readlines()
+#     print(letter[0])
+#
+#     for line in letter:
+#         test.write(line.replace('[name]', f'{first_person},'))
+
+
+name_list = open('C:/Users/Bryant/Downloads/Mail+Merge+Project+Start (1)/Mail Merge Project Start/Input/Names/invited_names.txt', mode ='r')
+test = open('C:/Users/Bryant/Downloads/Mail+Merge+Project+Start (1)/Mail Merge Project Start/Output/ReadyToSend/test.txt', mode='w')
+template = open('C:/Users/Bryant/Downloads/Mail+Merge+Project+Start (1)/Mail Merge Project Start/Input/Letters/starting_letter.txt', mode ='r')
+
+names = name_list.readlines()
+words = template.readlines()
+
+for recipient in names:
+    clean_name = recipient.strip()
+    with open(f'C:/Users/Bryant/Downloads/Mail+Merge+Project+Start (1)/Mail Merge Project Start/Output/ReadyToSend/letter_for_{clean_name}.txt', mode="w") as letters:
+        for line in words:
+            letters.write(line.replace('[name]', recipient))
+
+
+
+test.close()
+template.close()
+name_list.close()
+letters.close()
